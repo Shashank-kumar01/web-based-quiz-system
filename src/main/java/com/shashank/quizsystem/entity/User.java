@@ -1,5 +1,5 @@
 package com.shashank.quizsystem.entity;
-
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
@@ -11,9 +11,24 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    private String role;
+
     private String name;
 
+    @Column(unique = true)
+    private String username;
+
+    @Column(unique = true)
     private String email;
+
     private String password;
 
     public User() {
@@ -53,6 +68,14 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
 
 
 

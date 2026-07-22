@@ -1,12 +1,12 @@
 package com.shashank.quizsystem.controller;
-
+import com.shashank.quizsystem.dto.QuizSubmissionRequest;
 import com.shashank.quizsystem.entity.Quiz;
 import com.shashank.quizsystem.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin(origins = "*")
 @RestController
 public class QuizController {
 
@@ -39,5 +39,10 @@ public class QuizController {
     public Quiz getQuizById(@PathVariable Long id) {
 
         return quizService.getQuizById(id);
+    }
+    @PostMapping("/submitQuiz")
+    public int submitQuiz(@RequestBody QuizSubmissionRequest request) {
+
+        return quizService.submitQuiz(request);
     }
 }

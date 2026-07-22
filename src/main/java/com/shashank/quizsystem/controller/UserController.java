@@ -1,5 +1,5 @@
 package com.shashank.quizsystem.controller;
-
+import com.shashank.quizsystem.dto.LoginResponse;
 import java.util.List;
 import java.util.Optional;
 import com.shashank.quizsystem.service.UserService;
@@ -7,7 +7,7 @@ import com.shashank.quizsystem.entity.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+@CrossOrigin(origins = "*")
 @RestController
 public class UserController {
 
@@ -42,5 +42,13 @@ public class UserController {
                              @RequestBody User updatedUser) {
 
         return userService.updateUser(id, updatedUser);
+    }
+    @PostMapping("/login")
+    public LoginResponse loginUser(@RequestBody User user) {
+
+        return userService.loginUser(
+                user.getEmail(),
+                user.getPassword()
+        );
     }
 }
